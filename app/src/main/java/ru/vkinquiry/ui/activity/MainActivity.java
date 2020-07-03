@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -18,6 +17,7 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
+import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
@@ -27,7 +27,6 @@ import java.util.List;
 import ru.vkinquiry.CurrentUser;
 import ru.vkinquiry.MyApplication;
 import ru.vkinquiry.R;
-import ru.vkinquiry.consts.ApiConstants;
 import ru.vkinquiry.model.Profile;
 import ru.vkinquiry.mvp.presenter.MainPresenter;
 import ru.vkinquiry.mvp.view.MainView;
@@ -114,7 +113,8 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void startSignIn() {
-        VKSdk.login(this, ApiConstants.DEFAULT_LOGIN_SCOPE);
+        VKSdk.login(this, VKScope.EMAIL, VKScope.AUDIO, VKScope.DIRECT, VKScope.VIDEO,
+                VKScope.WALL, VKScope.PHOTOS, VKScope.GROUPS, VKScope.PAGES, VKScope.STATS, VKScope.DOCS);
     }
 
     @Override

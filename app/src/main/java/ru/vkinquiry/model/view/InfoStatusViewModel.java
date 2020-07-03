@@ -67,7 +67,6 @@ public class InfoStatusViewModel extends BaseViewModel {
             tvStatusText.setText(infoStatusViewModel.getStatus());
             tvDescriptionText.setText(infoStatusViewModel.getDescription());
             tvSiteText.setText(infoStatusViewModel.getSite());
-
         }
 
         @Override

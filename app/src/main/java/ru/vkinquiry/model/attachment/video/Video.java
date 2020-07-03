@@ -54,7 +54,7 @@ public class Video extends RealmObject implements Attachment {
     @Expose
     private int canAdd;
 
-    @SerializedName("can_add")
+    @SerializedName("files")
     @Expose
     private File files;
 

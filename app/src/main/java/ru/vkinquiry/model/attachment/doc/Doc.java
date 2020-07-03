@@ -103,21 +103,21 @@ public class Doc extends RealmObject implements Attachment {
     public void setMtype(int mtype) {
         this.mtype = mtype;
     }
-
-    @Override
-    public String getType() {
-        return VKAttachments.TYPE_DOC;
-    }
-
-    public String getAccessKey() {
-        return accessKey;
-    }
-
-    public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
-    }
-
-    public Preview getPreview() {
-        return preview;
-    }
+//
+//    @Override
+//    public String getType() {
+//        return VKAttachments.TYPE_DOC;
+//    }
+//
+//    public String getAccessKey() {
+//        return accessKey;
+//    }
+//
+//    public void setAccessKey(String accessKey) {
+//        this.accessKey = accessKey;
+//    }
+//
+//    public Preview getPreview() {
+//        return preview;
+//    }
 }

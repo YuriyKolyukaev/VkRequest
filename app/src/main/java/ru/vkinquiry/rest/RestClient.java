@@ -24,6 +24,7 @@ public class RestClient {                                                       
         mRetrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())                          // добавили в ретрофит адаптер для RX Java
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .baseUrl(VK_BASE_URL)
                 .build();
     }
