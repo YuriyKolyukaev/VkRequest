@@ -88,13 +88,13 @@ public class Doc extends RealmObject implements Attachment {
         this.url = url;
     }
 
-//    public int getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(int date) {
-//        this.date = date;
-//    }
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
 
     public int getMType() {
         return mtype;
