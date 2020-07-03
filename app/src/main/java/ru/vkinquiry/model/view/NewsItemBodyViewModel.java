@@ -16,6 +16,7 @@ public class NewsItemBodyViewModel extends BaseViewModel {
 
     private boolean mIsRepost;
 
+
     public NewsItemBodyViewModel(WallItem wallItem) {
         mId = wallItem.getId();
         mIsRepost = wallItem.haveSharedRepost();
