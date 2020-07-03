@@ -68,21 +68,21 @@ public class Doc extends RealmObject implements Attachment {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public String getExt() {
-        return ext;
-    }
-
-    public void setExt(String ext) {
-        this.ext = ext;
-    }
-
-    public String getUrl() {
-        return url;
-    }
+//    public void setSize(int size) {
+//        this.size = size;
+//    }
+//
+//    public String getExt() {
+//        return ext;
+//    }
+//
+//    public void setExt(String ext) {
+//        this.ext = ext;
+//    }
+//
+//    public String getUrl() {
+//        return url;
+//    }
 
     public void setUrl(String url) {
         this.url = url;
