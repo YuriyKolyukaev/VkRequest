@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import ru.vkinquiry.model.CommentItem;
 import ru.vkinquiry.model.Owner;
 import ru.vkinquiry.model.WallItem;
 import ru.vkinquiry.model.attachment.ApiAttachment;
@@ -91,4 +92,26 @@ public class VkListHelper {
         }
         return attachmentVhItems;
     }
+
+    public static List<CommentItem> getCommentsList(ItemWithSendersResponse<CommentItem> response) {
+        return getCommentsList(response, false);
+    }
+
+    public static List<CommentItem> getCommentsList(ItemWithSendersResponse<CommentItem> response, boolean isFromTopic) {
+        List<CommentItem> commentItems = response.items;
+
+        for (CommentItem commentItem : commentItems) {
+            Owner sender = response.getSender(commentItem.getFromId());
+            commentItem.setSenderName(sender.getFullName());
+            commentItem.setSenderPhoto(sender.getPhoto());
+
+            commentItem.setIsFromTopic(isFromTopic);
+
+            commentItem.setAttachmentsString(Utils
+                    .convertAttachmentsToFontIcons(commentItem.getAttachments()));
+        }
+        return commentItems;
+    }
+
+
 }

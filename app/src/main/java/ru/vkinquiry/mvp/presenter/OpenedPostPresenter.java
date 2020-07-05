@@ -1,5 +1,7 @@
 package ru.vkinquiry.mvp.presenter;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView> {
 
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
+        Log.i("TEST_LOG", "onCreateLoadDataObservable " + count + " " + offset);
         return mWallApi.getById(new WallGetByIdRequestModel(ApiConstants.MY_GROUP_ID, id).toMap())
                 .flatMap(full -> Observable.fromIterable(VkListHelper.getWallList(full.response)))
                 .observeOn(AndroidSchedulers.mainThread())
@@ -69,6 +72,7 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView> {
 
     @Override
     public Observable<BaseViewModel> onCreateRestoreDataObservable() {
+        Log.i("TEST_LOG", "onCreateRestoreDataObservable ");
         return Observable.fromCallable(getListFromRealmCallable())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(wallItem -> {

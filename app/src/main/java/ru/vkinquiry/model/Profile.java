@@ -12,6 +12,8 @@ public class Profile extends RealmObject implements Owner {
     @PrimaryKey
     public int id;
 
+    public boolean isContact;
+
     @SerializedName("photo_50")
     @Expose
     public String photo50;
@@ -126,5 +128,13 @@ public class Profile extends RealmObject implements Owner {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isContact() {
+        return isContact;
+    }
+
+    public void setContact(boolean contact) {
+        isContact = contact;
     }
 }

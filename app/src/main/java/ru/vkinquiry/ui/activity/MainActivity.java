@@ -1,8 +1,10 @@
 package ru.vkinquiry.ui.activity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -17,19 +19,25 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
-import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ru.vkinquiry.CurrentUser;
 import ru.vkinquiry.MyApplication;
 import ru.vkinquiry.R;
+import ru.vkinquiry.consts.ApiConstants;
 import ru.vkinquiry.model.Profile;
 import ru.vkinquiry.mvp.presenter.MainPresenter;
 import ru.vkinquiry.mvp.view.MainView;
+import ru.vkinquiry.rest.api.AccountApi;
+import ru.vkinquiry.rest.model.request.AccountRegisterDeviceRequest;
 import ru.vkinquiry.ui.fragment.BaseFragment;
 import ru.vkinquiry.ui.fragment.NewsFeedFragment;
 
@@ -39,6 +47,9 @@ public class MainActivity extends BaseActivity implements MainView {
     служит для управления жизненным циклом Presentor*/
     @InjectPresenter
     MainPresenter mainPresenter;
+
+    @Inject
+    AccountApi mAccountApi;
 
     private Drawer mDrawer;
 
@@ -113,15 +124,21 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void startSignIn() {
-        VKSdk.login(this, VKScope.EMAIL, VKScope.AUDIO, VKScope.DIRECT, VKScope.VIDEO,
-                VKScope.WALL, VKScope.PHOTOS, VKScope.GROUPS, VKScope.PAGES, VKScope.STATS, VKScope.DOCS);
+        VKSdk.login(this, ApiConstants.DEFAULT_LOGIN_SCOPE);
     }
 
+    @SuppressLint("HardwareIds")
     @Override
     public void signedId() {
         Toast.makeText(this, "Current user id: " + CurrentUser.getId(), Toast.LENGTH_SHORT).show();
         setContent(new NewsFeedFragment());
         setUpDrawer();
+
+        //регистрируем устройство на сервере ВК как получатель push-сообщений
+        mAccountApi.registerDevice(new AccountRegisterDeviceRequest(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)).toMap())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override
@@ -145,5 +162,10 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void showFragmentFromDrawer(BaseFragment baseFragment) {
         setContent(baseFragment);
+    }
+
+    @Override
+    public void startActivityFromDrawer(Class<?> act) {
+        startActivity(new Intent(MainActivity.this, act));
     }
 }

@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ru.vkinquiry.rest.RestClient;
+import ru.vkinquiry.rest.api.AccountApi;
 import ru.vkinquiry.rest.api.BoardApi;
 import ru.vkinquiry.rest.api.GroupsApi;
 import ru.vkinquiry.rest.api.UsersApi;
@@ -54,6 +55,12 @@ public class RestModule {                                                       
     @Singleton
     public BoardApi provideBoardApi() {
         return mRestClient.createService(BoardApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public AccountApi provideAccountApi() {
+        return mRestClient.createService(AccountApi.class);
     }
 
 }

@@ -20,7 +20,7 @@ import ru.vkinquiry.mvp.view.BaseFeedView;
 
 public abstract class BaseFeedPresenter <V extends BaseFeedView> extends MvpPresenter<V> {
 
-    public static final int START_PAGE_SIZE = 15;
+    public static final int START_PAGE_SIZE = 100;
     public static final int NEXT_PAGE_SIZE = 15;
 
     private boolean mIsInLoading;

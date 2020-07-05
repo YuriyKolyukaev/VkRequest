@@ -40,13 +40,13 @@ public class Doc extends RealmObject implements Attachment {
     @Expose
     private String accessKey;
 
-//    public int getId() {
-//        return id;
-//    }
+    public int getId() {
+        return id;
+    }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getOwnerId() {
         return ownerId;

@@ -15,4 +15,6 @@ public interface MainView extends MvpView {
     void showCurrentUser(Profile profile);
 
     void showFragmentFromDrawer(BaseFragment baseFragment);
+
+    void startActivityFromDrawer(Class<?> act);
 }

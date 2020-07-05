@@ -45,6 +45,7 @@ public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostVi
         if (getArguments() != null) {
             this.id = getArguments().getInt("id");
         }
+        setWithEndlessList(false);
     }
 
     @Override

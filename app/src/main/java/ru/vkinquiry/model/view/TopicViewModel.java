@@ -5,10 +5,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.vkinquiry.MyApplication;
 import ru.vkinquiry.R;
+import ru.vkinquiry.common.manager.MyFragmentManager;
+import ru.vkinquiry.model.Place;
 import ru.vkinquiry.model.Topic;
+import ru.vkinquiry.ui.activity.BaseActivity;
+import ru.vkinquiry.ui.fragment.TopicCommentsFragment;
 import ru.vkinquiry.ui.view.holder.BaseViewHolder;
 
 public class TopicViewModel extends BaseViewModel {
@@ -38,7 +45,7 @@ public class TopicViewModel extends BaseViewModel {
         return new TopicViewHolder(view);
     }
 
-    public int getMid() {
+    public int getId() {
         return mid;
     }
 
@@ -78,8 +85,12 @@ public class TopicViewModel extends BaseViewModel {
         @BindView(R.id.tv_comments_count)
         public TextView tvCommentsCount;
 
+        @Inject
+        MyFragmentManager myFragmentManager;
+
         public TopicViewHolder(@NonNull View itemView) {
             super(itemView);
+            MyApplication.getsApplicationComponent().inject(this);
             ButterKnife.bind(this, itemView);
         }
 
@@ -88,6 +99,14 @@ public class TopicViewModel extends BaseViewModel {
             tvTitle.setText(topicViewModel.getmTitle());
             tvCommentsCount.setText((topicViewModel.getmCommentsCount()));
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    myFragmentManager.addFragment((BaseActivity) view.getContext(),
+                            TopicCommentsFragment.newInstance(new Place(String.valueOf(topicViewModel.getmGroupId()), String.valueOf(topicViewModel.getId()))),
+                            R.id.main_wrapper);
+                }
+            });
         }
 
         @Override

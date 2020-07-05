@@ -63,9 +63,10 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
     }
 
     protected ObservableTransformer<WallItem, WallItem> applyFilter() {
+        Log.i("TEST_LOG", "applyFilter" + enabledIdFiltering + " " + CurrentUser.getId());
         if (enabledIdFiltering && CurrentUser.getId() != null) {
             return baseItemObservable -> baseItemObservable.filter(
-                    wallItem -> CurrentUser.getId().equals(String.valueOf(wallItem.getId()))
+                    wallItem -> CurrentUser.getId().equals(String.valueOf(wallItem.getFromId()))
             );
         } else {
             return baseItemObservable -> baseItemObservable;

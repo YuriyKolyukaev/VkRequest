@@ -22,8 +22,10 @@ import ru.vkinquiry.model.Profile;
 import ru.vkinquiry.mvp.view.MainView;
 import ru.vkinquiry.rest.api.UsersApi;
 import ru.vkinquiry.rest.model.request.UsersGetRequestModel;
+import ru.vkinquiry.ui.activity.SettingActivity;
 import ru.vkinquiry.ui.fragment.BaseFragment;
 import ru.vkinquiry.ui.fragment.BoardFragment;
+import ru.vkinquiry.ui.fragment.GroupRulesFragment;
 import ru.vkinquiry.ui.fragment.InfoFragment;
 import ru.vkinquiry.ui.fragment.MembersFragment;
 import ru.vkinquiry.ui.fragment.MyPostsFragment;
@@ -122,6 +124,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
             case 2:
                 fragment = new MyPostsFragment();
                 break;
+            case 3:
+                getViewState().startActivityFromDrawer(SettingActivity.class);
+                break;
             case 4:
                 fragment = new MembersFragment();
                 break;
@@ -130,6 +135,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 break;
             case 6:
                 fragment = new InfoFragment();
+                break;
+            case 7:
+                fragment = new GroupRulesFragment();
                 break;
         }
         if (fragment != null && !myFragmentManager.isAlreadyContains(fragment)) {

@@ -59,7 +59,7 @@ public class Utils {
                 calendar.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)) {
             sdf = new SimpleDateFormat("сегодня в H:mm", currentLocale);
         } else  if (calendar.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)) {
-            sdf = new SimpleDateFormat("d МММ в H:mm", currentLocale);
+            sdf = new SimpleDateFormat("d MMM в H:mm", currentLocale);
         }
         return sdf.format(date);
     }
@@ -128,4 +128,11 @@ public class Utils {
             }
         }
     }
+
+    /*используется для для разделения получаемого с сервера параметра place на owner_id и post_id
+    для упрощения парсинга*/
+    public static String[] splitString(String s) {
+        return s.replaceAll("[^-?0-9]+", " ").trim().split(" ");
+    }
+
 }

@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.vkinquiry.R;
 import ru.vkinquiry.model.Member;
+import ru.vkinquiry.model.Profile;
 import ru.vkinquiry.model.view.BaseViewModel;
 import ru.vkinquiry.ui.view.holder.BaseViewHolder;
 
@@ -33,6 +34,11 @@ public class MemberViewModel extends BaseViewModel {
         this.photo = member.getPhoto();
         this.mFullName = member.getFullName();
 
+    }
+
+    public MemberViewModel(Profile profile) {
+        this.photo = profile.getPhoto();
+        this.mFullName = profile.getFullName();
     }
 
     @Override
@@ -58,7 +64,6 @@ public class MemberViewModel extends BaseViewModel {
             super(itemView);
 
             ButterKnife.bind(this, itemView);
-
         }
 
         @Override

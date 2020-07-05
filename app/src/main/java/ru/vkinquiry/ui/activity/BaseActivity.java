@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes;
 import androidx.appcompat.widget.Toolbar;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import javax.inject.Inject;
 
@@ -28,6 +29,9 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.fab)
+    public FloatingActionButton mFab;
 
     // переопределяем метод с одним параметром Bundle
     @Override
@@ -58,9 +62,10 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
     protected abstract int getMainContentLayout();
 
     /*Вызывается при смене фрагмента. Этот метод нужен для того чтобы менять заголовок Toolbar
-    и видимость кнопки floating action button.*/
-    public void fragmentOnScreen(BaseFragment fragment) {
-        setToolBarTitle(fragment.createToolbarTitle(this));
+и видимость кнопки floating action button.*/
+    public void fragmentOnScreen(BaseFragment baseFragment) {
+        setToolBarTitle(baseFragment.createToolbarTitle(this));
+        setupFabVisibility(baseFragment.needFab());
     }
 
     // метод установки заголовка toolBar'a
@@ -68,6 +73,16 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
         // перед установкой заголовка проверка на null.
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
+        }
+    }
+
+    public void setupFabVisibility(boolean needFab) {
+        if (mFab == null) return;
+
+        if (needFab) {
+            mFab.show();
+        } else {
+            mFab.hide();
         }
     }
 

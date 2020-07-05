@@ -2,6 +2,8 @@ package ru.vkinquiry.ui.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+
 import ru.vkinquiry.R;
 
 // Здесь будет отображаться список записей текущего пользователя
@@ -11,7 +13,7 @@ public class MyPostsFragment extends NewsFeedFragment{
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter.setEnabledIdFiltering(true);
     }

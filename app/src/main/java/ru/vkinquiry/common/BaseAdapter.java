@@ -102,4 +102,12 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
         }
         return count;
     }
+
+    // метод для добавления элементов в создаваемое сообщение
+    public void insertItem(BaseViewModel newItem) {
+        registerTypeInstance(newItem);
+
+        list.add(newItem);
+        notifyItemInserted(getItemCount() - 1);
+    }
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "81492705810",
+    "firebase_url": "https://vkinquiry.firebaseio.com",
+    "project_id": "vkinquiry",
+    "storage_bucket": "vkinquiry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81492705810:android:54fbe2e83660dc6cbd4ecb",
+        "android_client_info": {
+          "package_name": "ru.vkinquiry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81492705810-6i21r3homahdpo8gvmaovde18jv5got4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTAiQbJKFuHMbtMiB9oa0_V8bRr7_tf_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81492705810-6i21r3homahdpo8gvmaovde18jv5got4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
